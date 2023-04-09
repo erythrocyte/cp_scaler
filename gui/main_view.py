@@ -89,6 +89,9 @@ class MainView(QtWidgets.QMainWindow, UiMainView):
         fn, _ = QtWidgets.QFileDialog.getOpenFileName(
             self, 'Select Folder', '', options=QtWidgets.QFileDialog.DontUseNativeDialog)
 
+        if fn == '':
+            return 
+
         new_fn = f'{os.path.splitext(os.path.basename(fn))[0]}_scaled'
 
         self.coord_fn.setText(fn)
