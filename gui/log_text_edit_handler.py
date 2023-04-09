@@ -34,7 +34,7 @@ class LogTextEditHandler(logging.Handler):
         if log_level == 'WARNING':
             return f'<font color=\"Orange\">{msg}</font>'
 
-        if log_level == 'ERROR':
+        if log_level == 'ERROR' or log_level == 'CRITICAL':
             return f'<font color=\"Red\">{msg}</font>'
 
         return msg

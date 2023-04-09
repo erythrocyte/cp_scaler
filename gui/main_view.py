@@ -33,23 +33,26 @@ class MainView(QtWidgets.QMainWindow, UiMainView):
         self.btn_coord_fn.clicked.connect(self.__set_coord_fn)
 
     def __run_calc(self):
-        prms = self.__get_calc_params()
-        if not self.__check_params(prms):
-            return
-        coord = grdecl_reader.read_coord(prms.coord_fn)
-        self.__update_progress(0)
-        scaled_fig = scaler.scale_coord(
-            coord, prms.nx, prms.ny, prms.sx, prms.sy, self.__update_progress)
-        self.__update_progress(100)
-        if scaled_fig is None:
-            return
+        try:
+            prms = self.__get_calc_params()
+            if not self.__check_params(prms):
+                return
+            coord = grdecl_reader.read_coord(prms.coord_fn)
+            self.__update_progress(0)
+            scaled_fig = scaler.scale_coord(
+                coord, prms.nx, prms.ny, prms.sx, prms.sy, self.__update_progress)
+            self.__update_progress(100)
+            if scaled_fig is None:
+                return
 
 
-        d = os.path.dirname(prms.coord_fn)
-        fn_fig = os.path.join(d, f'{prms.new_fn}.dat')
-        coord_writer.write(fn_fig, scaled_fig)
-        logging.info(
-            f'Coord from file \'{prms.coord_fn}\' scaled and saved to file \'{fn_fig}\' !')
+            d = os.path.dirname(prms.coord_fn)
+            fn_fig = os.path.join(d, f'{prms.new_fn}.dat')
+            coord_writer.write(fn_fig, scaled_fig)
+            logging.info(
+                f'Coord from file \'{prms.coord_fn}\' scaled and saved to file \'{fn_fig}\' !')
+        except Exception as e:
+            logging.fatal(f'Fatal error with message: {str(e)}')
 
     def __check_params(self, prms: CalcParams):
         if prms is None:
