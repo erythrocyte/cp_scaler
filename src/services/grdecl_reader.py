@@ -1,3 +1,4 @@
+import logging
 from typing import List
 from src.models.grid import Grid
 from src.models.cube import Cube
@@ -8,12 +9,14 @@ def read_grid(fn: str) -> Grid:
     grd = Grid()
     return __read_file(fn, grd)
 
+
 def read_coord(fn: str):
     file = open(fn)
     coord = __readSection(file)
     file.close()
 
     return coord
+
 
 def __read_file(fn: str, grd: Grid):
     gridfile = open(fn)
@@ -66,7 +69,7 @@ def __read_file(fn: str, grd: Grid):
         elif line.startswith('PORO'):
             grd.cubes.append(__readScalarSection('PORO', gridfile))
         else:
-            print("else section: {}".format(line[:8]))
+            logging.debug("else section: {}".format(line[:8]))
 
     gridfile.close()
 

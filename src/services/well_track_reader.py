@@ -12,7 +12,7 @@ def read_well_track(fn: str) -> well_track.WellTrack:
     f = open(fn)
 
     while True:
-        line = next(f)
+        line = f.readline()
 
         # if line is empty
         # end of file is reached

@@ -4,7 +4,7 @@ import os
 from PyQt5 import QtWidgets
 
 from gui.widgets.ui_scaler_widget import UiScalerWidget
-from gui.scaler_calc_prms import CalcParams
+from gui.scaler_calc_prms import ScalerCalcParams
 from src.services import scaler
 from src.services import coord_writer, grdecl_reader
 
@@ -40,7 +40,7 @@ class ScalerWidget(QtWidgets.QWidget, UiScalerWidget):
         except Exception as e:
             logging.fatal(f'Fatal error with message: {str(e)}')
 
-    def __check_params(self, prms: CalcParams):
+    def __check_params(self, prms: ScalerCalcParams):
         if prms is None:
             logging.fatal('Unknown error while running calculation')
             return False
@@ -64,7 +64,7 @@ class ScalerWidget(QtWidgets.QWidget, UiScalerWidget):
         return True
 
     def __get_calc_params(self):
-        prms = CalcParams()
+        prms = ScalerCalcParams()
         prms.coord_fn = self.coord_fn.text()
         prms.nx = self.nx.value()
         prms.ny = self.ny.value()
