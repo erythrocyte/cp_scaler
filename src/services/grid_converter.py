@@ -1,19 +1,10 @@
 import vtk
-from grid import Grid
+from src.models.grid import Grid
 import vtk.util.numpy_support as ns
 import numpy as np
 
 
-def save(fn: str, grd: Grid):
-    ug = __create_unstructured_grid(grd)
-    xmlWriter = vtk.vtkXMLUnstructuredGridWriter()
-    xmlWriter.SetFileName(fn)
-    xmlWriter.SetInputData(ug)
-    xmlWriter.Write()
-    print('vtu saved!')
-
-
-def __create_unstructured_grid(grd: Grid):
+def convert_to_vtk(grd: Grid) -> vtk.vtkUnstructuredGrid:
     # * Convert corner point grid/cartesian grid into VTK unstructure grid
     print('[Geometry] Converting GRDECL to Paraview Hexahedron mesh data....')
     NX, NY, NZ = grd.nx, grd.ny, grd.nz
@@ -66,11 +57,9 @@ def __create_unstructured_grid(grd: Grid):
         # VTK will automatically overwrite the data with the same keyword
         ug = __appendScalarData2VTK(ug, cube.name, np.array(cube.values))
 
-    print('     UG Done!')
+    print('Unstructured grid done!')
 
     return ug
-
-
 
 
 def __appendScalarData2VTK(ug, name, numpy_array):

@@ -4,8 +4,9 @@ import os
 from PyQt5 import QtWidgets
 
 from gui.widgets.ui_scaler_widget import UiScalerWidget
-from gui.calc_prms import CalcParams
-from src import grdecl_reader, scaler, coord_writer
+from gui.scaler_calc_prms import CalcParams
+from src.services import scaler
+from src.services import coord_writer, grdecl_reader
 
 
 class ScalerWidget(QtWidgets.QWidget, UiScalerWidget):

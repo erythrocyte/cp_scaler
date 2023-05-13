@@ -1,6 +1,6 @@
 from typing import List
-from src.grid import Grid
-from src.cube import Cube
+from src.models.grid import Grid
+from src.models.cube import Cube
 import os.path
 
 
