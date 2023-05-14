@@ -2,7 +2,7 @@ import functools
 from PyQt5 import QtWidgets, QtCore, QtGui
 
 from gui import prog, log_text_edit_handler
-from gui.widgets import scaler_widget
+from gui.views import scaler_view, well_intersect_view
 
 
 class UiMainView:
@@ -11,6 +11,7 @@ class UiMainView:
         self.mess = None
         self.scaler_view = None
         self.splitter = None
+        self.well_intersect_view = None
 
     def setup_ui(self, widget: QtWidgets.QMainWindow):
         widget.setMinimumSize(QtCore.QSize(600, 400))
@@ -39,8 +40,10 @@ class UiMainView:
         self.progress = QtWidgets.QProgressBar()
         l.addWidget(self.progress, 1, 0, 1, 4)
 
-        self.scaler_view = scaler_widget.ScalerWidget()
+        self.scaler_view = scaler_view.ScalerView()
         tab.addTab(self.scaler_view, "Scaler")
+        self.well_intersect_view = well_intersect_view.WellIntersectView()
+        tab.addTab(self.well_intersect_view, "Well Intersect")
 
         cw.setLayout(l)
 

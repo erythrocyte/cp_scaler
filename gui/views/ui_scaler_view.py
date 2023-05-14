@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
 
 
-class UiScalerWidget:
+class UiScalerView:
     set_progress = QtCore.pyqtSignal(int)
 
     def __init__(self):

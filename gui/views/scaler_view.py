@@ -3,13 +3,13 @@ import os
 
 from PyQt5 import QtWidgets
 
-from gui.widgets.ui_scaler_widget import UiScalerWidget
-from gui.scaler_calc_prms import ScalerCalcParams
+from gui.views.ui_scaler_view import UiScalerView
+from gui.models.scaler_calc_prms import ScalerCalcParams
 from src.services import scaler
 from src.services import coord_writer, grdecl_reader
 
 
-class ScalerWidget(QtWidgets.QWidget, UiScalerWidget):
+class ScalerView(QtWidgets.QWidget, UiScalerView):
     def __init__(self):
         QtWidgets.QWidget.__init__(self)
         self.setup_ui(self)
@@ -76,7 +76,7 @@ class ScalerWidget(QtWidgets.QWidget, UiScalerWidget):
 
     def __set_coord_fn(self):
         fn, _ = QtWidgets.QFileDialog.getOpenFileName(
-            self, 'Select Folder', '', options=QtWidgets.QFileDialog.DontUseNativeDialog)
+            self, 'Select File', '', options=QtWidgets.QFileDialog.DontUseNativeDialog)
 
         if fn == '':
             return
