@@ -1,4 +1,4 @@
-class CalcParams:
+class ScalerCalcParams:
     def __init__(self):
         self.coord_fn = ''
         self.nx = -1

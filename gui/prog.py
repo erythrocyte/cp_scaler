@@ -2,6 +2,6 @@
 prog common settings
 """
 
-PRODUCT_VERSION = '0.1'
+PRODUCT_VERSION = '0.2'
 ORGANIZATION = 'erythrocyte'
-PRODUCT_NAME = 'CPScaler'
+PRODUCT_NAME = 'CPWorker'

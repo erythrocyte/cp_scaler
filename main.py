@@ -1,8 +1,8 @@
 import sys
-import logging
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets
 
 from gui.main_view import MainView
+# from bin import run
 
 
 def main():
@@ -10,6 +10,8 @@ def main():
     v = MainView()
     v.show()
     sys.exit(app.exec_())
+
+    # run.do()
 
 
 if __name__ == '__main__':
