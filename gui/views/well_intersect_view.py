@@ -102,5 +102,5 @@ class WellIntersectView(QtWidgets.QWidget, UiWellIntersectView):
 
         return fn
 
-    def __update_progress(self, val):
-        self.set_progress.emit(val)
+    def __update_progress(self, val, txt):
+        self.set_progress.emit(val, txt)

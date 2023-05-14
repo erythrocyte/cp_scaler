@@ -38,6 +38,7 @@ class UiMainView:
 
         l.addWidget(self.splitter, 0, 0, 1, 6)
         self.progress = QtWidgets.QProgressBar()
+        self.progress.setAlignment(QtCore.Qt.AlignCenter)
         l.addWidget(self.progress, 1, 0, 1, 4)
 
         self.scaler_view = scaler_view.ScalerView()

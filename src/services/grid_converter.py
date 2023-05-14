@@ -50,8 +50,8 @@ def convert_to_vtk(grd: Grid) -> vtk.vtkUnstructuredGrid:
                 cellid += 1
     ug.SetCells(Cell.GetCellType(), cellArray)
 
-    logging.info(f"     NumOfPoints: {ug.GetNumberOfPoints()}")
-    logging.info(f"     NumOfCells: {ug.GetNumberOfCells()}")
+    logging.debug(f"     NumOfPoints: {ug.GetNumberOfPoints()}")
+    logging.debug(f"     NumOfCells: {ug.GetNumberOfCells()}")
 
     # Load all available keywords/cellarrays into VTK container
     for cube in grd.cubes:

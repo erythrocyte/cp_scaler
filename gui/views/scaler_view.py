@@ -24,11 +24,13 @@ class ScalerView(QtWidgets.QWidget, UiScalerView):
             prms = self.__get_calc_params()
             if not self.__check_params(prms):
                 return
+            
+            self.__update_progress(0, 'Coord read')            
             coord = grdecl_reader.read_coord(prms.coord_fn)
-            self.__update_progress(0)            
+            self.__update_progress(30, 'Coord scale')
             scaled_fig = scaler.scale_coord(
                 coord, prms.nx, prms.ny, prms.sx, prms.sy, self.__update_progress)
-            self.__update_progress(100)
+            self.__update_progress(100, '')
             if scaled_fig is None:
                 return
 
@@ -86,5 +88,5 @@ class ScalerView(QtWidgets.QWidget, UiScalerView):
         self.coord_fn.setText(fn)
         self.new_fn.setText(new_fn)
 
-    def __update_progress(self, val):
-        self.set_progress.emit(val)
+    def __update_progress(self, val, txt):
+        self.set_progress.emit(val, txt)
