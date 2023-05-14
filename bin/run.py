@@ -1,6 +1,6 @@
 import os
 from bin import s
-from src.services import grdecl_reader, grid_converter, well_track_reader, intersect_finder, grid_saver
+from src.services import grdecl_reader, grid_converter, well_track_reader, intersect_finder, grid_saver, grid_worker
 
 
 def do():
@@ -13,6 +13,9 @@ def do():
     vtk_grid = grid_converter.convert_to_vtk(grd)
     grid_saver.save_ug_vtk(os.path.join(s.d, '1.vtk'), vtk_grid)
 
-    intersect_finder.find_intersected_cells(vtk_grid, well)
+    cell_indexes = intersect_finder.find_intersected_cells(vtk_grid, well)
 
+    ijk_indexes = grid_worker.get_grid_cell_indexes_from_vtk(grd, cell_indexes)
+
+    print(ijk_indexes)
     print('intersect finding completed')
