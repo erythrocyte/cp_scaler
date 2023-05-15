@@ -24,6 +24,6 @@ def scale_coord(fig: List, nx: int, ny: int, sx: float, sy: float, updater) -> L
         res[k+1] = y0 + dy * sy
         res[k + 2] = z1
 
-        updater(int((k+1) / pts_count * 100))
+        updater(int((k+1) / pts_count * 100), 'Coord scale')
 
     return res

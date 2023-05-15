@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, QtCore
 
 
 class UiWellIntersectView:
-    set_progress = QtCore.pyqtSignal(int)
+    set_progress = QtCore.pyqtSignal(int, str)
 
     def __init__(self):
         self.btn_run = QtWidgets.QPushButton()
