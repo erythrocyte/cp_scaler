@@ -15,13 +15,6 @@ class WellIntersectView(QtWidgets.QWidget, UiWellIntersectView):
         self.setup_ui(self)
         self.__connect()
 
-        self.data_fn.setText(
-            '/home/erythrocyte/Documents/move/GRID_MANIPULATION/WELL_INTERSECT/GRID.grdecl')
-        self.well_track_fn.setText(
-            '/home/erythrocyte/Documents/move/GRID_MANIPULATION/WELL_INTERSECT/well_track.txt')
-        self.result_fn.setText(
-            '/home/erythrocyte/Documents/move/GRID_MANIPULATION/WELL_INTERSECT/1.txt')
-
     def __connect(self):
         self.btn_run.clicked.connect(self.__run_calc)
         self.btn_data_fn.clicked.connect(self.__set_data_fn)
