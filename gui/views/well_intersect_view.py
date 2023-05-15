@@ -15,6 +15,13 @@ class WellIntersectView(QtWidgets.QWidget, UiWellIntersectView):
         self.setup_ui(self)
         self.__connect()
 
+        self.data_fn.setText(
+            '/home/erythrocyte/Documents/move/GRID_MANIPULATION/WELL_INTERSECT/GRID.grdecl')
+        self.well_track_fn.setText(
+            '/home/erythrocyte/Documents/move/GRID_MANIPULATION/WELL_INTERSECT/well_track.txt')
+        self.result_fn.setText(
+            '/home/erythrocyte/Documents/move/GRID_MANIPULATION/WELL_INTERSECT/1.txt')
+
     def __connect(self):
         self.btn_run.clicked.connect(self.__run_calc)
         self.btn_data_fn.clicked.connect(self.__set_data_fn)
@@ -22,12 +29,15 @@ class WellIntersectView(QtWidgets.QWidget, UiWellIntersectView):
         self.btn_result_fn.clicked.connect(self.__set_result_fn)
 
     def __run_calc(self):
+        def pp(val, txt):
+            self.set_progress.emit(val, txt)
+
         try:
             prms = self.__get_calc_params()
             if not self.__check_params(prms):
                 return
-            
-            well_intersect_presenter.calc(prms, self.__update_progress)
+
+            well_intersect_presenter.calc(prms, pp)
         except Exception as e:
             logging.fatal(f'Fatal error with message: {str(e)}')
 
@@ -101,6 +111,3 @@ class WellIntersectView(QtWidgets.QWidget, UiWellIntersectView):
             self, 'Select File', '', options=QtWidgets.QFileDialog.DontUseNativeDialog)
 
         return fn
-
-    def __update_progress(self, val, txt):
-        self.set_progress.emit(val, txt)

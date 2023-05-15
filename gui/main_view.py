@@ -29,7 +29,7 @@ class MainView(QtWidgets.QMainWindow, UiMainView):
         self.scaler_view.set_progress.connect(self.__update_progress)
         self.well_intersect_view.set_progress.connect(self.__update_progress)
 
-    @QtCore.pyqtSlot(int)
+    @QtCore.pyqtSlot(int, str)
     def __update_progress(self, val: int, txt: str):
         self.progress.setValue(val)        
         self.progress.setFormat(f'{txt} ({val} %)')
